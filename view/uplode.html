@@ -9,9 +9,18 @@
 <body>
   <div id="contein" class="listdiv">
     <form id="uplodetext" class="" action="uplodeok.php" method="post">
-      <input id="textcontent" class="textcontent" type="text">
+      <input id="textcontent" class="textcontent" name="innertext" type="text">
       <button id="uplodebtn" onclick="innerContent()" type="submit">게시</button>
     </form>
+    <!-- <tbody> -->
+      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+      <div>
+        <span><?php echo $row['id'] ?></span>
+        <span><?php echo $row['time'] ?></span>
+        <div><?php echo $row['innertext'] ?></div>
+      </div>
+      <?php } ?>
+    <!-- </tbody> -->
   </div>
 </body>
 </html>
@@ -24,10 +33,5 @@
   }
 </style>
 <script>
-  function innerContent() {
-    // var http = new XMLHttpRequest;
-    // var id = api\checkid.php
-    // console.log(http.open('get', id));
-    // location.href = 'uplode.php'
-  }
+
 </script>
