@@ -1,6 +1,6 @@
 <?php
+
 include('commen.php');
-print_r($_SESSION);
 
 if ($_SESSION) {
   // echo "로그인 정보가 있습니다";
@@ -14,9 +14,8 @@ if ($_SESSION) {
 }
 
 
-$sql = "select id, time, innertext from board";
+$sql = "select id, time, innertext from bord";
 $result = $conn->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +28,8 @@ $result = $conn->query($sql);
 <style>
   .items {
     margin: 10px;
-    border-top: 1px, solid gray;
-    border-bottom: 1px, solid gray;
+    border-top: 1px, solid, gray;
+    border-bottom: 1px, solid, gray;
   }
   .itemid {
 
@@ -39,36 +38,40 @@ $result = $conn->query($sql);
   .itemtext {}
 </style>
 <body>
-  <div style="background-color: black; padding: 30px; color: white;">
-    <?php echo $_SESSION['id']."님 환영합니다."; ?>
-    <button onclick="logout()">로그아웃</button>
-    <button onclick="changinfo()">회원정보수정</button>
-  </div>
-  <div id="contein" class="listdiv">
-    <form id="uplodetext" class="" action="uplodeok.php" method="post">
-      <input id="textcontent" class="textcontent" name="innertext" type="text">
-      <button id="uplodebtn" onclick="innerContent()" type="submit">게시</button>
-    </form>
-      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-      <div class="items">
-        <span class="itemid"><?php echo $row['id'] ?></span>
-        <span class="itemtime"><?php echo $row['time'] ?></span>
-        <div class="itemtext"><?php echo $row['innertext'] ?></div>
-      </div>
-      <?php } ?>
-  </div>
+    <div style=" padding:30px; color:black; text-align:center">header</div>
+    <div>
+      <table class="table table-secondary table-striped table-hover" style="text-align: center;">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <tr>
+              <td><?php echo $row['no'] ?></td>
+              <td>
+                <a href="content.php?no=<?php echo $row['no'] ?>">
+                <?php echo $row['title'] ?>
+                </a>                        
+              </td>
+              <td><?php echo $row['writer'] ?></td>
+              <td><?php echo $row['insertTime'] ?></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
 </body>
 </html>
 <script>
-  function changinfo() {
-    location.href = 'changinfo.php';
-  }
-  function logout() {
-    location.href = 'login.php';
-  }
+    function logout() {
+        location.href="logout.php";
+    }
+    function myInfoUpdate() {
+        location.href="my_info_update.php";
+    }
 </script>
-<?php
-// include('./view/uplode.html');
-
-// $sql = "get into board";
-?>
