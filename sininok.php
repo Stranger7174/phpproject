@@ -22,25 +22,25 @@ if ($db_pw) {
     $_SESSION['pw'] = $db_pw['password'];
     $_SESSION['id'] = $db_pw['id'];  
     echo "
-    <script>
-      alert('로그인 성공');
-      location.href='index.php';
-    </script>
+      <script>
+        alert('로그인 성공');
+        location.href='index.php';
+      </script>
     ";
   } else {
     echo "
-    <script>
-      alert('비밀번호가 맞지 않습니다');
-      history.back();
-    </script>
+      <script>
+        alert('비밀번호가 맞지 않습니다');
+        history.back();
+      </script>
     ";
   }
 } else {
   echo "
-  <script>
-    alert('아이디가 존재하지 않습니다');
-    histroy.back();
-  </script>
+    <script>
+      alert('아이디가 존재하지 않습니다');
+      histroy.back();
+    </script>
   ";
 }
 ?>

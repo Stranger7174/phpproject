@@ -1,5 +1,6 @@
 <?php
 // 세션은 대게 사용자의 정보를 저장해서 필요한 곳에 불러와 사용한다.
+session_start();
 
 $host = 'localhost';
 $user = 'root';
@@ -23,7 +24,7 @@ $conn = mysqli_connect($host, $user, '', $db);
           <a class="nav-link active" aria-current="page" href="write.php">글작성</a>
         </li>
       </ul>      
-      <b><?php echo $_SESSION['id'] . "님 환영합니다"?></b>
+      <b><?php echo $_SESSION["id"] . "님 환영합니다"?></b>
       <button onclick="myInfoUpdate()" class="btn btn-outline-success" type="submit" style="margin: 0 10 0 10;">정보수정</button>      
       <button onclick="logout()"class="btn btn-outline-success" type="submit">로그아웃</button>
       

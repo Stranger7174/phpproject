@@ -1,6 +1,6 @@
 <?php 
 
-include('common.php');
+include('commen.php');
 include('view/write.html');
 
 ?>

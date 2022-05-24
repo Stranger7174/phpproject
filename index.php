@@ -14,7 +14,8 @@ if ($_SESSION) {
 }
 
 
-$sql = "select id, time, innertext from bord";
+$sql = "select *
+        from bord";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -59,7 +60,7 @@ $result = $conn->query($sql);
                 </a>                        
               </td>
               <td><?php echo $row['writer'] ?></td>
-              <td><?php echo $row['insertTime'] ?></td>
+              <td><?php echo $row['time'] ?></td>
             </tr>
           <?php } ?>
         </tbody>
@@ -72,6 +73,6 @@ $result = $conn->query($sql);
         location.href="logout.php";
     }
     function myInfoUpdate() {
-        location.href="my_info_update.php";
+        location.href="mchanginfo.php";
     }
 </script>
