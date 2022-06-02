@@ -5,7 +5,7 @@ session_destroy();
 echo "
 <script>
 console.log('aa');
-location.herf='login.php';
+location.href='login.php';
 </script>
 ";
 ?>

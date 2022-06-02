@@ -2,7 +2,7 @@
 
 include('commen.php');
 $title = $_POST['title'];
-$content = addslashes($_POST['content']);
+$content = addslashes($_POST['innertext']);
 $writer = $_SESSION['id'];
 $insertTime = date("Y-m-d H:i:s");
 

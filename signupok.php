@@ -12,6 +12,8 @@ $sql = "insert into member set
       password = '$pacssword'
       ";
 //conn으로 sql값을 넣어줌
+echo $sql;
+print($sql);
 $result = $conn -> query($sql);
 echo $result;
 

@@ -4,16 +4,27 @@ include('commen.php');
 
 $no = $_GET['no'];
 
+// echo $no;
 
-$sql_u = "update bord
-          set count = count + 1
-          where no = '$no'";
+//쿠키가 없을경우 실행
+if (!isset($_COOKIE["bord{$no}"])) {
+  // echo "쿠키없음";
+  
+  //조회수 카운트 증가
+  $sql_u = "update bord
+  set count = count + 1
+  where no = '$no'
+  ";
 
-$result_u = $conn -> query($sql_u);
+  $result_u = $conn -> query($sql_u);
 
-// $setcookie(
-//   'userid', '1', time() + 3600
-// );
+  // 쿠키세팅
+  setcookie("bord{$no}", is_string("bord{$no}"), time() + 10800);
+
+  
+} else {
+  // echo "쿠키있음";
+}
 
 $sql = "select 
           title,
@@ -33,20 +44,27 @@ if($data) {
         
 } else {    
   echo "
-    <script>
-      alert('비정상 접근')
-      location.href='index.php';        
-    </script>
+  <script>
+  alert('비정상 접근')
+  location.href='index.php';        
+  </script>
   ";
 }
-
 ?>
 <script>
-  http.cook
-  set_c
+function getCookie(cookieName) {
+//쿠키가 배열로 저장
+let cookie = {};
+//split: 배열나누기
+document.cookie.split(';').forEach(function(el) {
+  //key값이 일치하는 value저장
+  let [key,value] = el.split('=');
+  cookie[key.trim()] = value;
+})
+//쿠키 반환
+return cookie[cookieName];
+}
 </script>
-<style>
-</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 <div style="margin: 10%; border:1px solid black;">
@@ -55,7 +73,7 @@ if($data) {
   <?php echo $data['title'];?>
   </p>
   내용
-  <pre>
+  <pre onclick="setcookie()">
   <?php echo $data['content'];?>
   </pre>
   작성자
@@ -80,7 +98,7 @@ if($data) {
 </div>
 
 <script>
-  var contentNo = <?php echo $no; ?>;
+  var contentNo = <?php echo $no ?>;
   function updateContent() {
     location.href='update_content.php?no=' + <?php echo $no ?>;
   }

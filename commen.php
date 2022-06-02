@@ -6,7 +6,7 @@ $host = 'localhost';
 $user = 'root';
 $db = 'hyosoung2';
 
-$conn = mysqli_connect($host, $user, '', $db);
+$conn = mysqli_connect($host, $user, null, $db);
 ?>
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg bg-light">
@@ -26,7 +26,7 @@ $conn = mysqli_connect($host, $user, '', $db);
       </ul>      
       <b><?php echo $_SESSION["id"] . "님 환영합니다"?></b>
       <button onclick="myInfoUpdate()" class="btn btn-outline-success" type="submit" style="margin: 0 10 0 10;">정보수정</button>      
-      <button onclick="logout()"class="btn btn-outline-success" type="submit">로그아웃</button>
+      <button onclick="logout()"class="btn btn-outline-success" type="button">로그아웃</button>
       
     </div>
   </div>
